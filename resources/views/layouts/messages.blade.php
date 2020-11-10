@@ -50,12 +50,17 @@
 
     @elseif(session()->has('red_message'))
 
-    <div x-data="{ show: true }" x-show="show" x-description="Notification panel, show/hide based on alert state."
+    <div
+        x-data="{ show: true }"
+        x-show="show"
+        x-description="Notification panel, show/hide based on alert state."
         x-transition:enter="transform ease-out duration-300 transition"
         x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
         x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
-        x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0" class="max-w-sm w-full bg-red-50 shadow-lg rounded-lg pointer-events-auto">
+        x-transition:leave="transition ease-in duration-100"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="max-w-sm w-full bg-red-50 shadow-lg rounded-lg pointer-events-auto">
 
         <div class="rounded-lg overflow-hidden">
             <div class="p-4">

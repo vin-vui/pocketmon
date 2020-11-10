@@ -24,6 +24,8 @@ return [
     'delete' => 'supprimer',
     'created_at' => 'créé le',
     'label' => 'libellé',
-    'Showing' => 'Affichage des items'
+    'Showing' => 'Affichage des items',
+    'next' => 'Suivant',
+    'previous' => 'Précédent',
 
 ];

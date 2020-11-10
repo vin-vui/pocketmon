@@ -18,5 +18,8 @@ return [
     'total' => 'dépenses pour',
     'cost' => 'coût',
     'search_by_label' => 'Rechercher les dépenses par libellé...',
+    'updated' => 'Dépense mise à jour !',
+    'deleted' => 'Dépense supprimée !',
+    'created' => 'Dépense ajoutée !'
 
 ];

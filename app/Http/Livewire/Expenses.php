@@ -23,11 +23,6 @@ class Expenses extends Component
         $this->readyToLoad = true;
     }
 
-    // public function paginationView()
-    // {
-    //     return 'custom-pagination';
-    // }
-
     protected $queryString = ['search'];
 
     /**
@@ -42,9 +37,8 @@ class Expenses extends Component
         return view('livewire.expenses.expenses', [
             'total_expenses' => $query_expense->sum('cost'),
             'number_expenses' => $query_expense->count(),
-            'expenses' => $query_expense->paginate(10)
-        ])
-            ->layout('layouts.app', ['header' => __('expense.expenses')]);
+            'expenses' => $this->readyToLoad ? $query_expense->paginate(10) : []
+        ])->layout('layouts.app', ['header' => __('expense.expenses')]);
     }
 
     /**
@@ -100,14 +94,13 @@ class Expenses extends Component
             'cost' => 'required',
         ]);
 
-        Expense::updateOrCreate(['id' => $this->expense_id], [
+        $expense = Expense::updateOrCreate(['id' => $this->expense_id], [
             'label' => $this->label,
             'cost' => $this->cost,
             'user_id' => Auth::id(),
         ]);
 
-        session()->flash('green_message',
-            $this->expense_id ? 'Blog Updated Successfully.' : 'Blog Created Successfully.');
+        session()->flash('green_message', $expense->wasChanged() ? __('expense.created') : __('expense.updated'));
 
         $this->closeModal();
         $this->resetInputFields();
@@ -135,6 +128,6 @@ class Expenses extends Component
     public function delete($id)
     {
         Expense::find($id)->delete();
-        session()->flash('red_message', 'Blog Deleted Successfully.');
+        session()->flash('red_message', __('expense.deleted'));
     }
 }
